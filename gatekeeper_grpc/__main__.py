@@ -10,7 +10,9 @@ from gatekeeper_grpc.services import GatekeeperService
 def main():
     server = grpc.server(futures.ThreadPoolExecutor())
 
-    gatekeeper_pb2_grpc.add_GatekeeperServicer_to_server(GatekeeperService(), server)
+    gatekeeper_pb2_grpc.add_GatekeeperServiceServicer_to_server(
+        GatekeeperService(), server
+    )
     server.add_insecure_port(SERVER_ADDRESS)
 
     LOGGER.info(BANNER)
