@@ -3,14 +3,14 @@ from concurrent import futures
 import grpc
 
 from gatekeeper_grpc import gatekeeper_pb2, gatekeeper_pb2_grpc
-from gatekeeper_grpc.config import SERVER_ADDRESS
+from gatekeeper_grpc.config import SERVER_ADDRESS, LOGGER
 from gatekeeper_grpc.whiteboard import set_status
 
 
 class GatekeeperServicer(gatekeeper_pb2_grpc.GatekeeperServicer):
     def updateBoard(self, request, context):
         for update in request.updates:
-            print(f"Set status of position: {update.position} to {update.status}")
+            LOGGER.info(f"set status of position: {update.position} to {update.status}")
             set_status(update.position, update.status)
 
 
@@ -20,7 +20,7 @@ def main():
     gatekeeper_pb2_grpc.add_GatekeeperServicer_to_server(GatekeeperServicer(), server)
     server.add_insecure_port(SERVER_ADDRESS)
 
-    print(
+    LOGGER.info(
         f"""
         *************************************************
 
