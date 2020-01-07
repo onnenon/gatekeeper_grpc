@@ -9,15 +9,27 @@ from gatekeeper_grpc.whiteboard import set_status
 
 class GatekeeperServicer(gatekeeper_pb2_grpc.GatekeeperServicer):
     def updateBoard(self, request, context):
-        for update in request:
-            set_status()
+        for update in request.updates:
+            print(f"Set status of position: {update.position} to {update.status}")
+            set_status(update.position, update.status)
 
 
 def main():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+
     gatekeeper_pb2_grpc.add_GatekeeperServicer_to_server(GatekeeperServicer(), server)
     server.add_insecure_port(SERVER_ADDRESS)
-    print("*************** Start Gatekeeper GRPC Server ***************")
+
+    print(
+        f"""
+        *************************************************
+
+          Start Gatekeeper GRPC Server @ {SERVER_ADDRESS}
+
+        *************************************************
+        """
+    )
+
     server.start()
     server.wait_for_termination()
 
