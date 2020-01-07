@@ -1,7 +1,7 @@
 from gatekeeper_grpc import gatekeeper_pb2_grpc
 from gatekeeper_grpc.config import LOGGER
-from gatekeeper_grpc.whiteboard import Whiteboard
 from gatekeeper_grpc.gatekeeper_pb2 import BoardUpdateResponse
+from gatekeeper_grpc.whiteboard import Whiteboard
 
 
 def testMock():
@@ -13,4 +13,6 @@ class GatekeeperService(gatekeeper_pb2_grpc.GatekeeperServiceServicer):
         for update in request.updates:
             LOGGER.info(f"set status of position: {update.position} to {update.status}")
             Whiteboard.set_status(update.position, update.status)
-            return BoardUpdateResponse(success=True)
+            response = BoardUpdateResponse()
+            response.requestStatus = True
+        return response

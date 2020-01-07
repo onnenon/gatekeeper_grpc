@@ -20,4 +20,4 @@ message BoardUpdate {
 
 message BoardUpdateRequest { repeated BoardUpdate updates = 1; }
 
-message BoardUpdateResponse { bool success = 1; }
+message BoardUpdateResponse { bool requestStatus = 1; }
