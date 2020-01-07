@@ -12,10 +12,10 @@ scrub: clean
 	rm -f .coverage
 
 format:
-	isort -rc gatekeeper tests
-	black gatekeeper tests
+	isort -rc gatekeeper_grpc tests
+	black gatekeeper_grpc tests
 
 test:
-	python3 -m coverage run --source gatekeeper -m pytest tests -p no:warnings
+	python3 -m coverage run --source gatekeeper_grpc -m pytest tests -p no:warnings
 
 review: format test

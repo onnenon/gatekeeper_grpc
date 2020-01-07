@@ -1,10 +1,10 @@
-import grpc
 from concurrent import futures
 
-from gatekeeper_grpc import gatekeeper_pb2, gatekeeper_pb2_grpc
-from gatekeeper_grpc.whiteboard import updateBoard
+import grpc
 
-SERVER_ADDRESS = "localhost:8990"
+from gatekeeper_grpc import gatekeeper_pb2, gatekeeper_pb2_grpc
+from gatekeeper_grpc.config import SERVER_ADDRESS
+from gatekeeper_grpc.whiteboard import updateBoard
 
 
 class GatekeeperServicer(gatekeeper_pb2_grpc.GatekeeperServicer):

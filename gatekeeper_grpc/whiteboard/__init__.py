@@ -1,16 +1,16 @@
 from enum import Enum
 
-from gatekeeper.config import Config
+from gatekeeper_grpc import config
 
-_pixels = [{}] * Config.ROW_COUNT
+_pixels = [{}] * config.ROW_COUNT
 
 _leds = []
 
-if Config.USE_BOARD is not None:
+if config.USE_BOARD is not None:
     import board
     import neopixel
 
-    _pixels = neopixel.NeoPixel(board.D12, Config.ROW_COUNT)
+    _pixels = neopixel.NeoPixel(board.D12, config.ROW_COUNT)
 
 _colors = {
     "red": (35, 0, 0),
