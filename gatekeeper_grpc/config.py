@@ -12,3 +12,12 @@ LOGGER.setLevel(logging.INFO)
 SERVER_ADDRESS = "localhost:8990"
 ROW_COUNT = 20
 USE_BOARD = None
+
+BANNER = f"""
+
+*************************************************
+
+  Start Gatekeeper GRPC Server @ {SERVER_ADDRESS}
+
+*************************************************
+"""

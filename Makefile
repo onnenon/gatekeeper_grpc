@@ -17,5 +17,6 @@ format:
 
 test:
 	python3 -m coverage run --source gatekeeper_grpc -m pytest tests -p no:warnings
+	coverage report -m
 
 review: format test

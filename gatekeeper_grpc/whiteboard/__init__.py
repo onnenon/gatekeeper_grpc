@@ -33,31 +33,33 @@ class WhiteboardStatusEnum(Enum):
     STATC = 4
 
 
-def _translate_position(index: int):
-    num_leds = len(_pixels)
-    if index < num_leds / 2:
-        return num_leds - (1 + index)
-    else:
-        return index - (num_leds // 2)
+class Whiteboard:
+    @staticmethod
+    def _translate_position(index: int):
+        num_leds = len(_pixels)
+        if index < num_leds / 2:
+            return num_leds - (1 + index)
+        else:
+            return index - (num_leds // 2)
 
+    @staticmethod
+    def set_status(position: int, status: int):
+        """
+        Change LED of given position to new value
+        """
+        if position >= len(_pixels):
+            raise WhiteboardError(
+                "position {} exceeds row count {}".format(position, len(_pixels))
+            )
+        led_position = Whiteboard._translate_position(position)
+        if status == WhiteboardStatusEnum.OUT.value:
+            _pixels[led_position] = _colors["yellow"]
+        elif status == WhiteboardStatusEnum.IN.value:
+            _pixels[led_position] = _colors["green"]
+        else:
+            _pixels[led_position] = _colors["off"]
 
-def set_status(position: int, status: WhiteboardStatusEnum):
-    """
-    Change LED of given position to new value
-    """
-    if position >= len(_pixels):
-        raise WhiteboardError(
-            "position {} exceeds row count {}".format(position, len(_pixels))
-        )
-    led_position = _translate_position(position)
-    if status == WhiteboardStatusEnum.OUT.value:
-        _pixels[led_position] = _colors["yellow"]
-    elif status == WhiteboardStatusEnum.IN.value:
-        _pixels[led_position] = _colors["green"]
-    else:
-        _pixels[led_position] = _colors["off"]
-
-
-def toggle_status(status: WhiteboardStatusEnum):
-    for i in range(len(_pixels)):
-        set_status(i, status)
+    @staticmethod
+    def toggle_status(status: WhiteboardStatusEnum):
+        for i in range(len(_pixels)):
+            Whiteboard.set_status(i, status)
