@@ -7,7 +7,7 @@ def testMock():
     pass
 
 
-class GatekeeperService(gatekeeper_pb2_grpc.GatekeeperServicer):
+class GatekeeperService(gatekeeper_pb2_grpc.GatekeeperServiceServicer):
     def updateBoard(self, request, context):
         for update in request.updates:
             LOGGER.info(f"set status of position: {update.position} to {update.status}")

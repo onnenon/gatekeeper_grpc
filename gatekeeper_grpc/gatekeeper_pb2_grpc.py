@@ -4,7 +4,7 @@ import grpc
 import gatekeeper_grpc.gatekeeper_pb2 as gatekeeper__pb2
 
 
-class GatekeeperStub(object):
+class GatekeeperServiceStub(object):
     # missing associated documentation comment in .proto file
     pass
 
@@ -15,13 +15,13 @@ class GatekeeperStub(object):
       channel: A grpc.Channel.
     """
         self.updateBoard = channel.unary_unary(
-            "/Gatekeeper/updateBoard",
+            "/gatekeeper.GatekeeperService/updateBoard",
             request_serializer=gatekeeper__pb2.BoardUpdateRequest.SerializeToString,
             response_deserializer=gatekeeper__pb2.BoardUpdateResponse.FromString,
         )
 
 
-class GatekeeperServicer(object):
+class GatekeeperServiceServicer(object):
     # missing associated documentation comment in .proto file
     pass
 
@@ -33,7 +33,7 @@ class GatekeeperServicer(object):
         raise NotImplementedError("Method not implemented!")
 
 
-def add_GatekeeperServicer_to_server(servicer, server):
+def add_GatekeeperServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
         "updateBoard": grpc.unary_unary_rpc_method_handler(
             servicer.updateBoard,
@@ -42,6 +42,6 @@ def add_GatekeeperServicer_to_server(servicer, server):
         ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-        "Gatekeeper", rpc_method_handlers
+        "gatekeeper.GatekeeperService", rpc_method_handlers
     )
     server.add_generic_rpc_handlers((generic_handler,))

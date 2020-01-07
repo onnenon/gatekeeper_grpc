@@ -20,3 +20,6 @@ test:
 	coverage report -m
 
 review: format test
+
+generate:
+	python -m grpc.tools.protoc --proto_path=. --python_out=. --grpc_python_out=. gatekeeper.proto 
