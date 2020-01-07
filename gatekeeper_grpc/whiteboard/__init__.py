@@ -25,7 +25,7 @@ class WhiteboardError(Exception):
     pass
 
 
-class WhiteboardStatus(Enum):
+class WhiteboardStatusEnum(Enum):
     OUT = 0
     IN = 1
     STATA = 2
@@ -33,7 +33,7 @@ class WhiteboardStatus(Enum):
     STATC = 4
 
 
-def _translate_position(index):
+def _translate_position(index: int):
     num_leds = len(_pixels)
     if index < num_leds / 2:
         return num_leds - (1 + index)
@@ -41,20 +41,23 @@ def _translate_position(index):
         return index - (num_leds // 2)
 
 
-def set_status(position, status):
+def set_status(position: int, status: WhiteboardStatusEnum):
+    """
+    Change LED of given position to new value
+    """
     if position >= len(_pixels):
         raise WhiteboardError(
             "position {} exceeds row count {}".format(position, len(_pixels))
         )
     led_position = _translate_position(position)
-    if status == WhiteboardStatus.OUT.value:
+    if status == WhiteboardStatusEnum.OUT.value:
         _pixels[led_position] = _colors["yellow"]
-    elif status == WhiteboardStatus.IN.value:
+    elif status == WhiteboardStatusEnum.IN.value:
         _pixels[led_position] = _colors["green"]
     else:
         _pixels[led_position] = _colors["off"]
 
 
-def toggle_status(status):
+def toggle_status(status: WhiteboardStatusEnum):
     for i in range(len(_pixels)):
         set_status(i, status)

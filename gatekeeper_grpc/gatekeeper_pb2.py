@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     syntax="proto3",
     serialized_options=None,
     serialized_pb=_b(
-        '\n\x10gatekeeper.proto"8\n\x0b\x42oardUpdate\x12\x10\n\x08position\x18\x01 \x01(\x05\x12\x17\n\x06status\x18\x02 \x01(\x0e\x32\x07.Status"2\n\x12\x42oardUpdateRequest\x12\x1c\n\x06update\x18\x01 \x03(\x0b\x32\x0c.BoardUpdate"\x15\n\x13\x42oardUpdateResponse*-\n\x06Status\x12\x07\n\x03OUT\x10\x00\x12\x06\n\x02IN\x10\x01\x12\t\n\x05\x45RROR\x10\x02\x12\x07\n\x03OFF\x10\x03\x32H\n\nGatekeeper\x12:\n\x0bupdateBoard\x12\x13.BoardUpdateRequest\x1a\x14.BoardUpdateResponse"\x00\x62\x06proto3'
+        '\n\x10gatekeeper.proto"8\n\x0b\x42oardUpdate\x12\x10\n\x08position\x18\x01 \x01(\r\x12\x17\n\x06status\x18\x02 \x01(\x0e\x32\x07.Status"3\n\x12\x42oardUpdateRequest\x12\x1d\n\x07updates\x18\x01 \x03(\x0b\x32\x0c.BoardUpdate"\x15\n\x13\x42oardUpdateResponse*-\n\x06Status\x12\x07\n\x03OUT\x10\x00\x12\x06\n\x02IN\x10\x01\x12\t\n\x05\x45RROR\x10\x02\x12\x07\n\x03OFF\x10\x03\x32\x46\n\nGatekeeper\x12\x38\n\x0bupdateBoard\x12\x13.BoardUpdateRequest\x1a\x14.BoardUpdateResponseb\x06proto3'
     ),
 )
 
@@ -47,8 +47,8 @@ _STATUS = _descriptor.EnumDescriptor(
     ],
     containing_type=None,
     serialized_options=None,
-    serialized_start=153,
-    serialized_end=198,
+    serialized_start=154,
+    serialized_end=199,
 )
 _sym_db.RegisterEnumDescriptor(_STATUS)
 
@@ -71,8 +71,8 @@ _BOARDUPDATE = _descriptor.Descriptor(
             full_name="BoardUpdate.position",
             index=0,
             number=1,
-            type=5,
-            cpp_type=1,
+            type=13,
+            cpp_type=3,
             label=1,
             has_default_value=False,
             default_value=0,
@@ -124,8 +124,8 @@ _BOARDUPDATEREQUEST = _descriptor.Descriptor(
     containing_type=None,
     fields=[
         _descriptor.FieldDescriptor(
-            name="update",
-            full_name="BoardUpdateRequest.update",
+            name="updates",
+            full_name="BoardUpdateRequest.updates",
             index=0,
             number=1,
             type=11,
@@ -151,7 +151,7 @@ _BOARDUPDATEREQUEST = _descriptor.Descriptor(
     extension_ranges=[],
     oneofs=[],
     serialized_start=78,
-    serialized_end=128,
+    serialized_end=129,
 )
 
 
@@ -170,12 +170,12 @@ _BOARDUPDATERESPONSE = _descriptor.Descriptor(
     syntax="proto3",
     extension_ranges=[],
     oneofs=[],
-    serialized_start=130,
-    serialized_end=151,
+    serialized_start=131,
+    serialized_end=152,
 )
 
 _BOARDUPDATE.fields_by_name["status"].enum_type = _STATUS
-_BOARDUPDATEREQUEST.fields_by_name["update"].message_type = _BOARDUPDATE
+_BOARDUPDATEREQUEST.fields_by_name["updates"].message_type = _BOARDUPDATE
 DESCRIPTOR.message_types_by_name["BoardUpdate"] = _BOARDUPDATE
 DESCRIPTOR.message_types_by_name["BoardUpdateRequest"] = _BOARDUPDATEREQUEST
 DESCRIPTOR.message_types_by_name["BoardUpdateResponse"] = _BOARDUPDATERESPONSE
@@ -222,8 +222,8 @@ _GATEKEEPER = _descriptor.ServiceDescriptor(
     file=DESCRIPTOR,
     index=0,
     serialized_options=None,
-    serialized_start=200,
-    serialized_end=272,
+    serialized_start=201,
+    serialized_end=271,
     methods=[
         _descriptor.MethodDescriptor(
             name="updateBoard",

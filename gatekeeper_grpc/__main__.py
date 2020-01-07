@@ -4,12 +4,13 @@ import grpc
 
 from gatekeeper_grpc import gatekeeper_pb2, gatekeeper_pb2_grpc
 from gatekeeper_grpc.config import SERVER_ADDRESS
-from gatekeeper_grpc.whiteboard import updateBoard
+from gatekeeper_grpc.whiteboard import set_status
 
 
 class GatekeeperServicer(gatekeeper_pb2_grpc.GatekeeperServicer):
     def updateBoard(self, request, context):
-        return super().updateBoard(request, context)
+        for update in request:
+            set_status()
 
 
 def main():

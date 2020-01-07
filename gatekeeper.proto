@@ -1,25 +1,21 @@
 syntax = "proto3";
 
 enum Status {
-    OUT = 0;
-    IN = 1;
-    ERROR = 2;
-    OFF = 3;
+  OUT = 0;
+  IN = 1;
+  ERROR = 2;
+  OFF = 3;
 }
 
 message BoardUpdate {
-    int32 position = 1;
-    Status status = 2;
+  uint32 position = 1;
+  Status status = 2;
 }
 
-message BoardUpdateRequest {
-    repeated BoardUpdate update = 1;
-}
+message BoardUpdateRequest { repeated BoardUpdate updates = 1; }
 
 message BoardUpdateResponse {}
 
 service Gatekeeper {
-    rpc updateBoard(BoardUpdateRequest) returns (BoardUpdateResponse) {}
+  rpc updateBoard(BoardUpdateRequest) returns (BoardUpdateResponse);
 }
-
-
